@@ -13,7 +13,11 @@ const schema = mongoose.Schema({
         unique:true
 
     },
-    password: String,
+    password:{
+        type:String,
+        require:true
+    },
+    phoneNumber:String,
     role:{
         type:String,
         enum:["user","admin"],

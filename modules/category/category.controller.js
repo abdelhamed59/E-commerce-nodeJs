@@ -5,6 +5,9 @@ import handleError from "../../middleware/handelAsyncError.js";
 
 const addCategory=handleError(async(req,res,next)=>{
     req.body.slug=slugify(req.body.name)
+    req.body.image=req.file.filename
+    console.log(req.file);
+    
     let category=await Category.insertMany(req.body)
     res.status(201).json({message:"category added",category})
 })

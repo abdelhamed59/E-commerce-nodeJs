@@ -27,11 +27,20 @@ const schema = mongoose.Schema({
         require:true,
         min:0
     },
+    quantity:{
+        type:Number,
+        require:true,
+        default:0
+    },
     priceAfterDiscount:{
         type:Number,
         min:0
     },
-    sold:Number,
+    sold:{
+        type:Number,
+        default:0,
+        require:true
+    },
     stock:{
         type:Number,
         min:0

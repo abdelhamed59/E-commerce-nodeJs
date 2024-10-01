@@ -12,11 +12,11 @@ const schema = mongoose.Schema({
         min: 0,
         max: 5
     },
-    userId: {
+    createdBy: {
         type: Types.ObjectId,
         ref: "User"
     },
-    productId: {
+    product: {
         type: Types.ObjectId,
         ref: "Product"
     }

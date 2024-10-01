@@ -24,4 +24,8 @@ const schema = mongoose.Schema({
     versionKey:false
 })
 
+schema.post("init",function(doc){
+    doc.image=process.env.BASEURL+"uploads/"+doc.image
+})
+
 export const Category = mongoose.model('Category', schema)

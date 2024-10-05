@@ -14,6 +14,7 @@ const schema = mongoose.Schema({
         require: true
 
     },
+    image:String,
     category:{
         type:Types.ObjectId,
         ref:"Category"
@@ -26,5 +27,7 @@ const schema = mongoose.Schema({
     timestamps:true,
     versionKey:false
 })
-
+schema.post("init",function(doc){
+    doc.image=process.env.BASEURL+"uploads/"+doc.image
+})
 export const subCategory = mongoose.model('subCategory', schema)

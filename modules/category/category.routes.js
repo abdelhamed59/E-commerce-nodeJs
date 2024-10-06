@@ -3,9 +3,10 @@ import { addCategory, deleteCategory, getCategories, getCategory, updateCategory
 import { validation } from '../../middleware/validation.js'
 import { categorySchema, getByIdSchema } from './category.validation.js'
 import { uploadSingle } from '../../utili/fileUpload.js'
+import subCategoryRoutes from '../subCategory/subCategory.routes.js'
 
 const categoryRoutes = express.Router()
-
+categoryRoutes.use("/:category/subCategory",subCategoryRoutes)
 categoryRoutes.route("/")
     .post(uploadSingle("image"),validation(categorySchema),addCategory)
     .get(getCategories)

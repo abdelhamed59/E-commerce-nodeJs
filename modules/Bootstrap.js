@@ -1,4 +1,4 @@
-import brandRoutes from "./Brand/Brand.routes.js";
+import brandRoutes from "./Brand/brand.routes.js";
 import categoryRoutes from "./category/category.routes.js"
 import productRoutes from "./product/product.routes.js";
 import subCategoryRoutes from "./subCategory/subCategory.routes.js";

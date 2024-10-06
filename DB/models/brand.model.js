@@ -23,5 +23,7 @@ const schema = mongoose.Schema({
     timestamps:true,
     versionKey:false
 })
-
+schema.post("init",function(doc){
+    doc.logo=process.env.BASEURL+"uploads/"+doc.logo
+})
 export const Brand = mongoose.model('Brand', schema)

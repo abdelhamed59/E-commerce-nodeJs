@@ -1,6 +1,8 @@
 import slugify from "slugify";
 import { Category } from "../../DB/models/category.model.js";
 import handleError from "../../middleware/handelAsyncError.js";
+import { deleteOne } from "../../middleware/handler.js";
+import apiFeatuers from "../../utili/apiFeatuers.js";
 
 
 const addCategory=handleError(async(req,res,next)=>{
@@ -13,8 +15,10 @@ const addCategory=handleError(async(req,res,next)=>{
 })
 
 const getCategories=handleError(async(req,res,next)=>{
-const allCategories=await Category.find()
-res.status(200).json({message:"all categories",count:allCategories.length,allCategories})
+    let apiFeatuer= new apiFeatuers(Category.find(),req.query).pagination().fields().filter().sort().search()
+
+const allCategories=await apiFeatuer.preModel
+res.status(200).json({message:"all categories",page:apiFeatuer.page,count:allCategories.length,allCategories})
 })
 
 const getCategory=handleError(async(req,res,next)=>{
@@ -33,13 +37,7 @@ const updateCategory=handleError(async(req,res,next)=>{
     res.status(200).json({message:"success",category})
 })
 
-const deleteCategory=handleError(async(req,res,next)=>{
-    let{id}=req.params
-    const category=await Category.findByIdAndDelete(id)
-     category||res.status(200).json({message:"not found"})
-     !category||res.status(200).json({message:"success",category})
-
-})
+const deleteCategory=deleteOne(Category)
 
 export{
     addCategory,

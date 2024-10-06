@@ -4,7 +4,7 @@ import {  getByIdSchema, subCategorySchema, updateSubCategorySchema } from './su
 import { uploadSingle } from '../../utili/fileUpload.js'
 import { addSubCategory, deleteSubCategory, getSubCategories, getSubCategory, updateSubCategory } from './subCategory.controller.js'
 
-const subCategoryRoutes = express.Router()
+const subCategoryRoutes = express.Router({mergeParams:true})
 
 subCategoryRoutes.route("/")
     .post(uploadSingle("image"), validation(subCategorySchema), addSubCategory)

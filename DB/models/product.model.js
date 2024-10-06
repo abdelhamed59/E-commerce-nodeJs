@@ -1,7 +1,7 @@
 import mongoose, { Types } from "mongoose";
 
 const schema = mongoose.Schema({
-    title: {
+    name: {
         type: String,
         unique: [true, 'name should be unique'],
         trim: true,
@@ -41,10 +41,6 @@ const schema = mongoose.Schema({
         default:0,
         require:true
     },
-    stock:{
-        type:Number,
-        min:0
-    },
     rateCount:Number,
     rateAvg:Number,
     rate:{
@@ -71,6 +67,12 @@ const schema = mongoose.Schema({
 }, {
     timestamps:true,
     versionKey:false
+})
+
+
+schema.post("init",function(doc){
+    doc.imageCover=process.env.BASEURL+"uploads/"+doc.imageCover;
+    doc.images=doc.images.map(ele=>process.env.BASEURL+"uploads/"+ele)
 })
 
 export const Product = mongoose.model('Product', schema)

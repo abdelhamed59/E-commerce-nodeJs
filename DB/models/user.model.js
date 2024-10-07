@@ -17,6 +17,7 @@ const schema = mongoose.Schema({
         type:String,
         require:true
     },
+    changePasswordAt:Date,
     phoneNumber:String,
     role:{
         type:String,
@@ -35,5 +36,7 @@ const schema = mongoose.Schema({
     timestamps:true,
     versionKey:false
 })
+
+
 
 export const User = mongoose.model('User', schema)

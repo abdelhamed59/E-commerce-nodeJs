@@ -18,7 +18,7 @@ app.use("**",(req,res,next)=>{
     next(new AppError("invalid URL",404))
 })
 
-app.use((err, req, res, next) => {
-    res.status(err.statusCode).send({message:err.message,stack:err.stack})
+app.use((err, req, res, next) => {  
+    res.status(err.code).send({message:err.message,stack:err.stack})
   })
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

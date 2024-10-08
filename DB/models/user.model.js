@@ -1,7 +1,7 @@
 import mongoose, { Types } from "mongoose";
 
 const schema = mongoose.Schema({
-    name: {
+    name:{
         type: String,
         trim: true,
         require: true,
@@ -31,7 +31,16 @@ const schema = mongoose.Schema({
     isBlocked:{
         type:Boolean,
         default:false
-    }
+    },
+    wishList:[{
+        type:Types.ObjectId,
+        ref:"Product"
+    }],
+    addresses:[{
+            country:String,
+            city:String,
+            street:String,
+    }]
 }, {
     timestamps:true,
     versionKey:false

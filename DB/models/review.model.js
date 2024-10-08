@@ -25,4 +25,8 @@ const schema = mongoose.Schema({
     versionKey: false
 })
 
+schema.pre(/^find/,function(){
+    this.populate("createdBy","name")
+})
+
 export const Review = mongoose.model('Review', schema)

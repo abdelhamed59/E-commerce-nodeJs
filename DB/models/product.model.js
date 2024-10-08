@@ -66,13 +66,23 @@ const schema = mongoose.Schema({
     }
 }, {
     timestamps:true,
-    versionKey:false
+    versionKey:false,
+    toJSON:{virtuals:true}
 })
 
 
 schema.post("init",function(doc){
     doc.imageCover=process.env.BASEURL+"uploads/"+doc.imageCover;
     doc.images=doc.images.map(ele=>process.env.BASEURL+"uploads/"+ele)
+})
+
+schema.virtual("reviews",{
+    ref:"Review",
+    localField:"_id",
+    foreignField:"product"
+})
+schema.pre(/^find/,function(){
+    this.populate("reviews")
 })
 
 export const Product = mongoose.model('Product', schema)

@@ -22,7 +22,7 @@ const schema = mongoose.Schema({
         enum:["prec","fixed"],
         default:"fixed"
     },
-    userId: {
+    user: {
         type: Types.ObjectId,
         ref: "User"
     }

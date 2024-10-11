@@ -73,7 +73,7 @@ const schema = mongoose.Schema({
 
 schema.post("init",function(doc){
     doc.imageCover=process.env.BASEURL+"uploads/"+doc.imageCover;
-    doc.images=doc.images.map(ele=>process.env.BASEURL+"uploads/"+ele)
+   if(doc.images) doc.images=doc.images.map(ele=>process.env.BASEURL+"uploads/"+ele)
 })
 
 schema.virtual("reviews",{

@@ -1,6 +1,6 @@
 import authRoutes from "./auth/auth.routes.js";
+import brandRoutes from "./Brand/brand.routes.js";
 import cartRoutes from "./Cart/cart.routes.js";
-import brandRoutes from "./Brand/brand.routes.js"
 import categoryRoutes from "./category/category.routes.js"
 import couponRoutes from "./coupon/coupon.routes.js";
 import orderRoutes from "./order/order.routes.js";
@@ -14,8 +14,8 @@ import wishListRoutes from "./wishList/wishList.routes.js";
 export const Bootstrap=(app)=>{
     app.use("/api/v1/categories",categoryRoutes);
     app.use("/api/v1/subCategories",subCategoryRoutes);
-    app.use("/api/v1/brands",brandRoutes);
     app.use("/api/v1/products",productRoutes);
+    app.use("/api/v1/brands",brandRoutes)
     app.use("/api/v1/users",userRoutes);
     app.use("/api/v1/auth",authRoutes);
     app.use("/api/v1/review",reviewRoutes);

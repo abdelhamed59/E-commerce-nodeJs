@@ -1,6 +1,6 @@
 import authRoutes from "./auth/auth.routes.js";
-import brandRoutes from './Brand/brand.routes.js';
 import cartRoutes from "./Cart/cart.routes.js";
+import brandRoutes from "./Brand/brand.routes.js"
 import categoryRoutes from "./category/category.routes.js"
 import couponRoutes from "./coupon/coupon.routes.js";
 import orderRoutes from "./order/order.routes.js";

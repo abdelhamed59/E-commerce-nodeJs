@@ -1,5 +1,5 @@
 import AppError from "../utili/appError.js"
-import { User } from '../DB/models/User.model.js'
+import { User } from "../DB/models/User.model.js"
 
 const checkEmail=async(req,res,next)=>{
     let{email}=req.body

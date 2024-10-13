@@ -1,5 +1,5 @@
 import handleError from "../../middleware/handelAsyncError.js";
-import { User } from "../../DB/models/User.model.js";
+import { User } from "../../DB/models/user.model.js";
 
 const addAddress = handleError(async (req, res, next) => {
     const address = await User.findOneAndUpdate(

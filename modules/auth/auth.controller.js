@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { User } from "../../DB/models/User.model.js"
+import { User } from "../../DB/models/user.model.js"
 import handleError from "../../middleware/handelAsyncError.js"
 import bcrypt from 'bcrypt'
 import AppError from '../../utili/appError.js'

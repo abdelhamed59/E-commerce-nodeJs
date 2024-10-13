@@ -1,7 +1,7 @@
 import handleError from "../../middleware/handelAsyncError.js";
 import { deleteOne } from "../../middleware/handler.js";
 import apiFeatuers from "../../utili/apiFeatuers.js";
-import { User } from "../../DB/models/User.model.js";
+import { User } from "../../DB/models/user.model.js";
 
 
 const addUser = handleError(async (req, res, next) => {

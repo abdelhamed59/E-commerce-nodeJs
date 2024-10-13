@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import AppError from '../utili/appError.js';
 import handleError from './handelAsyncError.js';
-import { User } from '../DB/models/User.model.js';
+import { User } from '../DB/models/user.model.js';
 
 const protectRoute =handleError(async(req, res, next) => {
     const authtoken = req.header('Authorization');

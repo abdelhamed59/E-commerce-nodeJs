@@ -1,18 +1,24 @@
 {
-  "name": "e-commerce-nodeja",
+  "name": "e-commerce-nodejs",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "type": "module",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+  "engines": {
+    "node": "20.12.2"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "e-commerce": "file:",
     "express": "^4.19.2",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
@@ -20,6 +26,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.14",
     "qrcode": "^1.5.4",
-    "slugify": "^1.6.6"
+    "slugify": "^1.6.6",
+    "stripe": "^17.2.0"
   }
 }

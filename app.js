@@ -3,9 +3,12 @@ import 'dotenv/config.js'
 import connection from './DB/connection.js'
 import { Bootstrap } from './modules/Bootstrap.js'
 import AppError from './utili/appError.js'
+import cors from 'cors'
 const app = express()
 const port = 3000
 app.use(express.json())
+app.use(cors())
+
 app.use("/uploads",express.static("uploads"))
 
 connection()
@@ -21,4 +24,4 @@ app.use("**",(req,res,next)=>{
 app.use((err, req, res, next) => {  
     res.status(err.code).send({message:err.message,stack:err.stack})
   })
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen( process.env.PORT||port, () => console.log(`Example app listening on port ${port}!`))

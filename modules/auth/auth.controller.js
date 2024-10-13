@@ -14,7 +14,7 @@ const signIn = handleError(async (req, res, next) => {
     let{email,password}=req.body
     const user = await User.findOne({email})
     if (user && bcrypt.compareSync(password, user.password)) {
-        const token = jwt.sign({ id: user._id, role: user.role, name: user.name }, "auth")
+        const token = jwt.sign({ id: user._id, role: user.role, name: user.name ,email:user.email}, "auth")
         res.status(200).json({ message: "wellcom", token })
     } else {
         next(new AppError( "invalid email or password", 404))

@@ -107,7 +107,7 @@ if(coupon.type=="prec"){
 }
    
     await cart.save()
-    res.status(200).json({ message: "Cart Deleted Successfuly", Cart: cart })
+    res.status(200).json({ message: "coupon valid", Cart: cart })
 })
 
 

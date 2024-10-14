@@ -15,7 +15,7 @@ const stripe = new Stripe('sk_test_51Q9CVQRs8NJMQca17tLchooppuaNxOixtIlyDTRlo6n6
 const app = express()
 const port = 3000
 
-app.post('/order/webhook', express.raw({ type: 'application/json' }), handleError(async(req, res) => {
+app.post('/order/webhook', express.raw({ type: 'application/json' }), handleError(async(req, res,next) => {
   const signature = req.headers['stripe-signature'].toString();
   let event = stripe.webhooks.constructEvent(
     req.body,
@@ -27,11 +27,11 @@ let checkout
 if(event.type=="checkout.session.completed"){
   checkout = event.data.object;
 
-  let user=await User.fiudOne({email:checkout.customer_email})
+  let user=await User.findOne({email:checkout.customer_email})
 
   let cart=await Cart.findById({_id:checkout.client_reference_id})
   let order=new Order({
-    user:user._idid,
+    user:user._id,
     cartItems:cart.cartItems,
     totalPrice:checkout.amount_total/100,
     shippingAddress:checkout.metadata,
@@ -51,7 +51,7 @@ if(event.type=="checkout.session.completed"){
 
     await Product.bulkWrite(options)
   }else{
-    return next(new AppError("oder occurs",409))
+    return next(new AppError("order occurs",409))
   }
   await Cart.findOneAndDelete({_id:checkout.client_reference_id})
 }

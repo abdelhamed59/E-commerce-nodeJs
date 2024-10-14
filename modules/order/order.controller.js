@@ -68,7 +68,6 @@ let session = await stripe.checkout.sessions.create({
     client_reference_id:req.params.id,
     metadata:req.body.shippingAddress
 })
-console.log(session);
 
 res.status(200).json({message:"Done",session})
   })

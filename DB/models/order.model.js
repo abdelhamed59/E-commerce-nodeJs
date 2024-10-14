@@ -21,7 +21,7 @@ const schema = mongoose.Schema({
     totalPriceAfterDiscount:Number,
     paymentMethod:{
         type:String,
-        enums:["cache","credit"],
+        enums:["cache","online"],
         default:"cache"
     },
     shippingAddress:{

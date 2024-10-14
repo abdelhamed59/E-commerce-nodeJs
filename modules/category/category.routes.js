@@ -14,7 +14,7 @@ categoryRoutes.route("/")
 categoryRoutes.route("/:id")
     .put(updateCategory)
     .get(validation(getByIdSchema),getCategory)
-    .delete(validation(categorySchema),deleteCategory)
+    .delete(validation(getByIdSchema),deleteCategory)
 
 
 

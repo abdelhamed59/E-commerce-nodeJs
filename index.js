@@ -22,6 +22,8 @@ app.post('/order/webhook', express.raw({ type: 'application/json' }), handleErro
     "whsec_Lte15zTUkBXLmmG5C4mZi6gSPpB4ZU30"
   );
 let checkout
+console.log(checkout);
+
 if(event.type=="checkout.session.completed"){
   checkout = event.data.object;
 
@@ -30,7 +32,6 @@ if(event.type=="checkout.session.completed"){
 
 
   let cart=await Cart.findById({_id:checkout.client_reference_id})
-  let totalPrice=cart.totalPriceAfterDiscount ? cart.totalPriceAfterDiscount:cart.totalPrice;
   let order=new Order({
     user:user._idid,
     cartItems:cart.cartItems,
@@ -58,6 +59,8 @@ if(event.type=="checkout.session.completed"){
 }
   res.status(200).json({message:"success",checkout});
 }));
+
+
 app.use(express.json())
 app.use(cors())
 

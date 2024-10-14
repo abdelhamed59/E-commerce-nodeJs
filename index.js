@@ -22,7 +22,7 @@ app.post('/order/webhook', express.raw({ type: 'application/json' }), handleErro
     "whsec_Lte15zTUkBXLmmG5C4mZi6gSPpB4ZU30"
   );
 let checkout
-console.log(checkout);
+console.log(event);
 
 if(event.type=="checkout.session.completed"){
   checkout = event.data.object;
@@ -41,6 +41,7 @@ if(event.type=="checkout.session.completed"){
     isPaid:true,
     paidAt:Date.now()
   })
+  await order.save()
 
   if(order){
     let options= cart.cartItems.map(ele=>({
@@ -51,7 +52,6 @@ if(event.type=="checkout.session.completed"){
     }))
 
     await Product.bulkWrite(options)
-    await order.save()
   }else{
     return next(new AppError("oder occurs",409))
   }

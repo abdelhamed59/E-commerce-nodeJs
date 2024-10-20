@@ -32,6 +32,9 @@ const schema = mongoose.Schema({
         type:Boolean,
         default:false
     },
+    OTP:{
+        type: String,
+    },
     wishList:[{
         type:Types.ObjectId,
         ref:"Product"

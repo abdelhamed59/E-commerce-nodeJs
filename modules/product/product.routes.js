@@ -12,9 +12,9 @@ productRoutes.route("/")
     .get(getProducts)
 
 productRoutes.route("/:id")
-    .put(uploadFields([{name:'imageCover',maxCount:1},{name:"images",maxCount:10}]),validation(updateProductSchema),updateProduct)
+    .put(protectRoute,allowTo("admin"),uploadFields([{name:'imageCover',maxCount:1},{name:"images",maxCount:10}]),validation(updateProductSchema),updateProduct)
     .get(validation(getProductByIdSchema),getProduct)
-    .delete(validation(getProductByIdSchema),deleteProduct)
+    .delete(protectRoute,allowTo("admin"),validation(getProductByIdSchema),deleteProduct)
 
 
 

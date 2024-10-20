@@ -3,17 +3,18 @@ import { validation } from '../../middleware/validation.js'
 import {  getByIdSchema, subCategorySchema, updateSubCategorySchema } from './subCategory.validation.js'
 import { uploadSingle } from '../../utili/fileUpload.js'
 import { addSubCategory, deleteSubCategory, getSubCategories, getSubCategory, updateSubCategory } from './subCategory.controller.js'
+import { allowTo, protectRoute } from '../../middleware/verifyToken.js'
 
 const subCategoryRoutes = express.Router({mergeParams:true})
 
 subCategoryRoutes.route("/")
-    .post(uploadSingle("image"), validation(subCategorySchema), addSubCategory)
+    .post(protectRoute,allowTo("admin"),uploadSingle("image"), validation(subCategorySchema), addSubCategory)
     .get(getSubCategories)
 
 subCategoryRoutes.route("/:id")
-    .put(uploadSingle("image"),validation(updateSubCategorySchema),updateSubCategory)
+    .put(protectRoute,allowTo("admin"),uploadSingle("image"),validation(updateSubCategorySchema),updateSubCategory)
     .get(validation(getByIdSchema), getSubCategory)
-    .delete(validation(getByIdSchema), deleteSubCategory)
+    .delete(protectRoute,allowTo("admin"),validation(getByIdSchema), deleteSubCategory)
 
 
 

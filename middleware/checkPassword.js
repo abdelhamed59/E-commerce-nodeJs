@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt'
+import { User } from '../DB/models/user.model.js'
 import AppError from '../utili/appError.js'
-import { User } from '../DB/models/User.model.js'
+import bcrypt from 'bcrypt'
 
 
 const checkPassword=async(req,res,next)=>{

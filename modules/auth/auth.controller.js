@@ -6,9 +6,23 @@ import AppError from '../../utili/appError.js'
 import sendEmail from '../../utili/sendEmail.js'
 
 const signUp = handleError(async (req, res) => {
+    let {email}=req.body
     const user = await User.insertMany(req.body)
     user[0].password = undefined
-    res.status(201).json({ message: "Register Success", user })
+    const code = Math.floor(100000000 + Math.random() * 900000000);
+    user[0].OTP = code;
+    sendEmail(code, email)
+    await user[0].save()
+    res.status(200).json({ message: "please check your email for verify it" })
+})
+const verifyEmail=handleError(async(req,res,next)=>{
+    let {code}=req.body
+    const user=await User.findOne({OTP:code})
+    if(!user) return next(new AppError("invalid code ",401))
+        user.confirmEmail=true
+    user.OTP=undefined
+    await user.save()
+    res.status(201).json({ message: "register success" })
 })
 
 const signIn = handleError(async (req, res, next) => {
@@ -67,5 +81,6 @@ export{
     signIn,
     changePassword,
     getOTP,
-    resetPassword
+    resetPassword,
+    verifyEmail
 }
